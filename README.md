@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Clima
 Learn to make iOS Apps with [The App Brewery](https://www.appbrewery.co) 📱 | Project Stub | (Swift 4.0/Xcode 9) - Clima App
 
@@ -42,3 +43,7 @@ end
 
 Copyright © The App Brewery
 
+=======
+# ClimateApp
+A weather app that tells the user the current weather of their current area and any area around the world
+>>>>>>> 723d9d23b46d335768ca2ea4817a46c7c6803fdc
