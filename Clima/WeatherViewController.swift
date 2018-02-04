@@ -53,6 +53,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             response in
             if response.result.isSuccess {
                 print("Success! Got the weather data")
+                
+                // Retrieve the value in the response obj and pass it to updateWeatherData
+                let weatherJSON : JSON = JSON(response.result.value!)
+                self.updateWeatherData(json: weatherJSON)
+                
+                
             } else {
                 print("Error \(response.result.error!)")
                 self.cityLabel.text = "Networking problem"
@@ -70,7 +76,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
    
     
     //Write the updateWeatherData method here:
-    
+    func updateWeatherData(json : JSON) {
+        let tempResult = json["main"]["temp"]
+    }
 
     
     
@@ -96,7 +104,12 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         // Check to ensure that we obtain a spread and not an invalid result
         if location.horizontalAccuracy > 0 {
+            
             locationManager.stopUpdatingLocation()
+            // Set the locationManager's delegate to nil after it has updated
+            // Removing current class from being the Location managers delegate
+            locationManager.delegate = nil
+            
             
             print("longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude)")
             
@@ -105,7 +118,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             
             let params : [String : String] = ["lat" : latitude, "lon" : longitude, "appid" : APP_ID]
             
-            // getWeatherDara(url: WEATHER_URL, parameters: params)
+            getWeatherData(url: WEATHER_URL, parameters: params)
         }
     }
     
